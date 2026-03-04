@@ -64,7 +64,7 @@ export default function App() {
 
     const t = await supabase
       .from("tasks")
-      .select("id,title,description,created_by,assigned_to,status,created_at,updated_at")
+      .select("id,title,description,user_id,assigned_to,status,created_at,updated_at")
       .order("updated_at", { ascending: false });
 
     if (t.error) alert(t.error.message);
