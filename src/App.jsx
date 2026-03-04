@@ -77,7 +77,7 @@ export default function App() {
   }, [userId]);
 
   const inbox = useMemo(() => tasks.filter((t) => t.assigned_to === userId), [tasks, userId]);
-  const outbox = useMemo(() => tasks.filter((t) => t.created_by === userId), [tasks, userId]);
+  const outbox = useMemo(() => tasks.filter((t) => t.user_id === userId), [tasks, userId]);
 
   async function createAndAssign() {
     if (!userId) return;
@@ -99,7 +99,7 @@ export default function App() {
       .insert({
         title: cleanTitle,
         description: description.trim() || null,
-        created_by: userId,
+        user_id: userId,
         assigned_to: assignedTo,
         status: "open",
       })
